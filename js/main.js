@@ -14,11 +14,13 @@ function signUpHandler() {
   let password = document.getElementById("password").value;
   let passwordConfirm = document.getElementById("passwordConfirm").value;
   let moveOn = true;
+  if (username === "" || password === "" || passwordConfirm === "") {
+    alert("All fields are mandatory");
+    moveOn = false;
+  }
   if (username !== "" && password !== "" && passwordConfirm !== "") {
     for (let i = 0; i < users.length; i++) {
-      console.log(users[i].username);
       if (username === users[i].username) {
-        console.log(username);
         moveOn = false;
         alert("Username already in use");
         break;
@@ -38,15 +40,32 @@ function signUpHandler() {
 signInBtn.addEventListener("click", signInHandler);
 
 function signInHandler() {
+  let moveOn = true;
   let usernameIn = document.getElementById("usernameIn").value;
   let passwordIn = document.getElementById("passwordIn").value;
-  for (let i = 0; i < users.length; i++) {
-    if (usernameIn === users[i].username && passwordIn === users[i].password) {
-      alert("Sign in successful!");
-      break;
-    } else {
-      alert("Incorrect username or password");
-      break;
+  if (usernameIn === "" || passwordIn === "") {
+    alert("All fields are mandatory");
+    moveOn = false;
+  }
+  if (moveOn === true) {
+    for (let i = 0; i < users.length; i++) {
+      if (
+        usernameIn !== users[i].username ||
+        passwordIn !== users[i].username
+      ) {
+        console.log(users[i].username);
+        moveOn = false;
+        alert("Incorrect password or username");
+        break;
+      } else if (
+        usernameIn === users[i].username &&
+        passwordIn === users[i].password
+      ) {
+        console.log(users[i].username);
+        saveUsers();
+        alert("Sign in successful!");
+        break;
+      }
     }
   }
 }
