@@ -21,8 +21,8 @@ function signUpHandler() {
         console.log(username);
         moveOn = false;
         alert("Username already in use");
+        break;
       }
-      break;
     }
   }
   if (moveOn === true) {
