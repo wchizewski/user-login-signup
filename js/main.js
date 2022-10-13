@@ -47,26 +47,15 @@ function signInHandler() {
     alert("All fields are mandatory");
     moveOn = false;
   }
-  if (moveOn === true) {
-    for (let i = 0; i < users.length; i++) {
-      if (
-        usernameIn !== users[i].username ||
-        passwordIn !== users[i].username
-      ) {
-        console.log(users[i].username);
-        moveOn = false;
-        alert("Incorrect password or username");
-        break;
-      } else if (
-        usernameIn === users[i].username &&
-        passwordIn === users[i].password
-      ) {
-        console.log(users[i].username);
-        saveUsers();
-        alert("Sign in successful!");
-        break;
-      }
+  for (let i = 0; i < users.length; i++) {
+    if (usernameIn === users[i].username && passwordIn === users[i].password) {
+      alert("Sign in successful!");
+      moveOn = false;
+      break;
     }
+  }
+  if (moveOn === true) {
+    alert("Incorrect username or password");
   }
 }
 
